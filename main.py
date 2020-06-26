@@ -4,7 +4,7 @@ from TempleteGenerator import TempleteGenerator
 
 if __name__ == '__main__':
 
-    directory = r"C:\\Users\\esteb\\Documents\\TempletesGenerator\\Reservada" 
+    directory = r"C:\\Users\\some\\example\\directory" 
 
     fileScannerXls = FileScanner(directory , ".xlsx")
     fileScannerDocs = FileScanner(directory , ".docx")
