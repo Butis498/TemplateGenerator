@@ -60,20 +60,11 @@ class TempleteGenerator():
             
             document = load_workbook(documentName)
 
-            path, file = os.path.split(documentName)
-            file_name , file_extension = os.path.splitext(file)
-            path = Path(path)
-            path = str(path.parent)
-            new_doc = xlsxwriter.Workbook(self.path + "\\" +file_name + "_" + str(i) + file_extension)
-            
-            
-
             for sheet in document._sheets:
 
-                new_sheet = new_doc.add_worksheet()
-                for row in range(1,sheet.max_row):
-                    for col in range(sheet.max_column):
-                        par = str(sheet.cell(row+1,col+1).value)
+                for row in range(1,sheet.max_row + 1):
+                    for col in range(1,sheet.max_column + 1):
+                        par = str(sheet.cell(row,col).value)
                         if par == 'None':
                             par = ""
                             
@@ -84,18 +75,21 @@ class TempleteGenerator():
                             else:
                                 if self.isfloat(par):
                                     float_value = float(par)
-                                    new_sheet.write_number(row, col, float_value)
+                                    sheet.cell(row, col).value = float_value
                                 else:
-                                    new_sheet.write(row, col, par)
+                                    sheet.cell(row, col).value = par
 
                         if self.isfloat(par):
                             float_value = float(par)
-                            new_sheet.write_number(row, col, float_value)
+                            sheet.cell(row, col).value = float_value
                         else:
-                            new_sheet.write(row, col, par)
+                            sheet.cell(row, col).value = par
 
-
-            new_doc.close()
+            path, file = os.path.split(documentName)
+            file_name , file_extension = os.path.splitext(file)
+            path = Path(path)
+            path = str(path.parent)
+            document.save(self.path  + "\\"+ file_name + "_" + str(i) + file_extension)
         
 
 
