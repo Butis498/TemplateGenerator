@@ -10,3 +10,7 @@ It does not support documents with macros or other types of older versions of mi
 pip install openpyxl==2.5.11
 ```
 other versions will not work properly
+
+## Run ##
+
+First replce the gaps in which you want to replace data inside a document after that modify the main.py code to change the directory that will be scanned with the files to be replaced and generated , run the code and a new folder with the files will be created inside the program directory with the files generated
